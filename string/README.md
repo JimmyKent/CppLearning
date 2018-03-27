@@ -24,7 +24,7 @@
 
 
 
-strcpy和strncpy的缺陷分析  
+### strcpy和strncpy的缺陷分析  
 1. 潜在的内存越界问题  
 
 当dest所指对象的数组长度 < src的数组长度时
@@ -41,12 +41,15 @@ dest所指对象的数组长度 < count时，由于无法根据指针判定其�
 
 当 count > src所指对象的数组长度时，会继续填充'\0'直到count长度为止。
 
-(注：)以上3点缺陷在visual studio 2005安全性得到了改进版本：strcpy_s（dest, count, src）(_s我们可以理解为safe)
+//没有这个函数 (注：)以上3点缺陷在visual studio 2005安全性得到了改进版本：strcpy_s（dest, count, src）(_s我们可以理解为safe)
 
 4. 不能处理dest和src内存交叠情况的字符串拷贝  
 
+strncpy 代替 strcpy 拷贝n-1个字符，最后在字符串结尾手动添加'\0'结束标志，这样做比较安全。
 
-
+### \0问题
+会不会出现 abcd\0ef这种情况? 
+因为char本质是数组,存在容器长度和有效长度的不同.容器长度-有效长度,其余填充\0
 
 
 

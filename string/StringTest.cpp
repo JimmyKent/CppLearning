@@ -42,6 +42,22 @@ int main() {
     //现在的测试结果,应该是存在内存对齐的问题,所以导致有空余的空内存
 
 
+    //验证会不会出现 abcd\0ef这种情况?
+    //因为char本质是数组,存在容器长度和有效长度的不同.容器长度-有效长度,其余填充\0
+    char c4[5] ;// 等价 char c4[5] ={'\0'}
+    c4[0] = '1';
+    c4[1] = '\0';
+    c4[2] = '2';
+
+    printf("c4的容器大小: %zu \n", sizeof(c4));
+    printf("c4的有效大小: %zu \n", strlen(c4));
+    printf("c4[3] %s \n", c4[3]);//char c4[5] = {'\0'}; c4[3] (null)
+    printf("c4[3] %d \n", c4[3]);//char c4[5] = {'\0'}; c4[3] 0
+
+    char c5[5];
+    strcpy(c5, c4);
+    printf("中间有\\0的 char数组 c4 : %s \n", c4);
+    printf("strcpy中间有\\0的 char数组 c5 : %s \n", c5);
 
     return 0;
 }
