@@ -9,18 +9,19 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    int i = 10;
     int *pInt = nullptr;
     //等价于
     //int *pInt
     //pInt = nullptr;
-    pInt = nullptr;
 
 
+    int i = 10;
     printf("%d\n", i);
     printf("%p\n", &i);
     printf("%p\n", &pInt);
-    //printf("%d\n", pInt);
+    printf("%d\n", pInt);
+    printf("%p\n", pInt);
+    printf("%p\n", &*pInt);
 
     int *p = &i;
     //*p = nullptr;
